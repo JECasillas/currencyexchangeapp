@@ -7,7 +7,9 @@ class TestCurrencyExchange(unittest.TestCase):
         result = getRate("USD", "CAD", 1)
         self.assertEqual(result, 1.25)
 
-    #def test_getFeeCost(self):
+    def test_getFeeCost(self):
+        result = getFeeCost(1)
+        self.assertEqual(1*0.03)
 
 
 if __name__ == '__main__':

@@ -99,12 +99,11 @@ This file is the flask application.
 
 ##### currencyExchange.py
 This file contains the business logic of the application.
-1. **Remoción de Stopwords** `removeStopwords(text)`:
-
-Una vez expuestos como función lambda y como servicio por medio de API gateway, serán referentes a la figura (4) en nuestro diagrama de arquitectura.
+1. **Getting the exchange rate** `getRate(baseCurrency, quoteCurrency, baseCurrencyAmount)`: The method simply applies division and multiplication to get the exchange rate according to the file's currency rates.
+2. **Exchanging a currency**     `exchange(text)`: here we go through various steps to make a transaction between two currencies. First we calculate the total transaction amount by adding the fee charge to the amount conversion. Then we check if there are sufficient funds to make a transaction for that amount, else we raise a catchable exception. We register in the database `feesregistries.json` the time of the transaction, the currency and the fee charged, since we want to keep a record of that. We return as information the new balance amount for the currency bought, the fee for the currency it was bought with, and the exchange rate.
 
 ##### test_currencyExchange.py
-This file contains some unit tests for the application.
+This file contains some unit tests for the application. For this occasion did not write tests for the API exposure methods, but only for the methods involving the business logic. I acknowledge the pertinence for writing methods for the API methods as well as much more and better unit tests for the core logic despite the time available.
 
 
 
