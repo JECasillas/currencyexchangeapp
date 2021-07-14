@@ -109,9 +109,11 @@ def exchange(baseCurrency, quoteCurrency, quoteCurrencyAmount):
 ##
 def calculateTotalFees():
     amountInUSD = 0
+    #we iterate all the fees charged registries
     for registry in feesDict["feeChargeRegistries"]:
         baseFee = registry[0]
         amount = registry[1]
+        #we convert the charge to USD and add it to the sum
         amountInUSD = amountInUSD + getRate(baseFee,"USD",amount)
 
     return amountInUSD

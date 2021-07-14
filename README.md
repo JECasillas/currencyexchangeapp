@@ -101,11 +101,19 @@ This file is the flask application.
 This file contains the business logic of the application.
 1. **Getting the exchange rate** `getRate(baseCurrency, quoteCurrency, baseCurrencyAmount)`: The method simply applies division and multiplication to get the exchange rate according to the file's currency rates.
 2. **Exchanging a currency**     `exchange(text)`: here we go through various steps to make a transaction between two currencies. First we calculate the total transaction amount by adding the fee charge to the amount conversion. Then we check if there are sufficient funds to make a transaction for that amount, else we raise a catchable exception. We register in the database `feesregistries.json` the time of the transaction, the currency and the fee charged, since we want to keep a record of that. We return as information the new balance amount for the currency bought, the fee for the currency it was bought with, and the exchange rate.
+2. **Calculating total fees charged** `calculateTotalFees()`: here we iterate all the fee charges registered, convert them to USD and add them to the sum to report to the user.
 
 ##### test_currencyExchange.py
 This file contains some unit tests for the application. For this occasion did not write tests for the API exposure methods, but only for the methods involving the business logic. I acknowledge the pertinence for writing methods for the API methods as well as much more and better unit tests for the core logic despite the time available.
 
-
+##### feesregistries.json.
+the file contains data structured in the following way:
+```
+{
+  "feeChargeRegistries": [["CAD", 0.0, "14/07/2021 17:50:26"],["GBP", 1.0, "14/07/2021 17:52:26"]]
+}
+```
+this is a registry of every fee charge done in list sets of 3.
 
 ### Contact the author ###
 
