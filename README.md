@@ -13,7 +13,7 @@ The service is built on python flask, with a local json file as our local databa
 ###### Docker Image
 * Download
 ```shell
-$ docker pull baronhotspur/currencyexchange
+$ docker pull baronhotspur/currencyexchange:latest
 ```
 * Run the container. The service runs on port 7700. To use the localhost "0.0.0.0" instead of docker's default, we do a "-p" parameter.
 ```shell
