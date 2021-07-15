@@ -104,7 +104,7 @@ This file contains the business logic of the application.
 2. **Calculating total fees charged** `calculateTotalFees()`: here we iterate all the fee charges registered, convert them to USD and add them to the sum to report to the user.
 
 ##### test_currencyExchange.py
-This file contains some unit tests for the application. For this occasion did not write tests for the API exposure methods, but only for the methods involving the business logic. I acknowledge the pertinence for writing methods for the API methods as well as much more and better unit tests for the core logic despite the time available.
+This file contains some unit tests for the application. For this occasion did not write tests for the API exposure methods, but only for the methods involving the business logic. I acknowledge the pertinence for writing methods for the API methods as well as much more and better unit tests for the core logic despite the time available. The unit tests should run with the feesregistries.json database clean or rather with at least it's initial registered value of a 0 amount transaction.
 
 ##### feesregistries.json.
 the file contains data structured in the following way:

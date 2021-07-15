@@ -25,13 +25,17 @@ class TestCurrencyExchange(unittest.TestCase):
 
         #if our getFeeCost passed, we use it to calculate what we expect
         with self.assertRaises(ValueError):
-            exchange("NZD", "EUR", 100)
+            exchange("NZD", "NZD", 100)
             exchange("EUR", "GBP", 2000)
             #We regression test by exhausting a currency's balance. Since we spent all our USD, we should'nt be able to buy anything else with it.
             exchange("USD","CAD",1)
 
-    #def test_calculateTotalFees():
-        #pass
+    #def test_calculateTotalFees(self):
+        #since we made a transaction in our past tests and assuming it's the only one registered in the database, we know the aproximate
+        #amount that should've been charged. About 3% of 1000.
+        #totalFees = calculateTotalFees()
+        #print(str(totalFees))
+        #self.assertAlmostEqual(totalFees,30, places=1)
 
 if __name__ == '__main__':
     unittest.main()
