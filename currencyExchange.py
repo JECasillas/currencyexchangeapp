@@ -70,7 +70,7 @@ def getAllQuotesBalance():
     return currentBalance
 
 ##
-# Makes a transaction between two currencis
+# Makes a transaction between two currencies
 # @param  {string}   baseCurrency           the base currency of the rate
 # @param  {string}   quoteCurrency          the quote currency of the rate
 # @param  {float}    quoteCurrencyAmount    the amount the user wants to know the exchange of
@@ -80,6 +80,7 @@ def exchange(baseCurrency, quoteCurrency, quoteCurrencyAmount):
     price = getRate(quoteCurrency,baseCurrency,quoteCurrencyAmount)
     fee = getFeeCost(price)
     totalTransactionCost = fee + price
+    #print("TOTAL TRANSACTION COST: " + str(totalTransactionCost))
     availableBalance = getQuoteAmountBalance(baseCurrency)
     #We check if there are sufficient funds on the currency we will charge a fee on
     if baseCurrency == quoteCurrency:

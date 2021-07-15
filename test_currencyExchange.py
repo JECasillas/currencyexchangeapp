@@ -12,12 +12,24 @@ class TestCurrencyExchange(unittest.TestCase):
         result = getFeeCost(1)
         self.assertEqual(result, 1*0.03)
 
+    #we test our exceptions.
     def test_exchange(self):
-        #result = exchange("USD", "CAD", 100)
+        #assuming getRate test works, we pay the exact amount plus the fee cost to spend the whole of a base currency
+        #1000/1.03 is the amount minus the 3% charged for any given currency
+        amountToExchange = getRate("USD","CAD",1000/1.0300001)
+        #print(amountToExchange)
+        #print(getRate("CAD","USD",1213.5922330097087))
+
+        #buying the exact amount of CAD for 970 USD should give us a USD balance of 0
+        exchange("USD","CAD",amountToExchange)
+        self.assertAlmostEqual(currentBalance["USD"], 0, places=3)
+
         #if our getFeeCost passed, we use it to calculate what we expect
         with self.assertRaises(ValueError):
-            exchange("USD", "USD", 100)
-            exchange("USD", "GBP", 2000)
+            exchange("NZD", "EUR", 100)
+            exchange("EUR", "GBP", 2000)
+            #We regression test by exhausting a currency's balance.
+            exchange("USD","CAD",1)
 
     #def test_calculateTotalFees():
         #pass
