@@ -49,7 +49,7 @@ def getRate(baseCurrency, quoteCurrency, baseCurrencyAmount):
 # @param  {float}    baseCurrencyAmount     the amount the user wants to know the exchange of
 # @return {float}    the calculated fee in the base currency
 ##
-def getFeeCost(baseCurrency, baseCurrencyAmount):
+def getFeeCost(baseCurrencyAmount):
     #return str((feePercentage/100)*baseCurrencyAmount) + " " + baseCurrency
     return (feePercentage/100)*baseCurrencyAmount
 
@@ -78,11 +78,13 @@ def getAllQuotesBalance():
 ##
 def exchange(baseCurrency, quoteCurrency, quoteCurrencyAmount):
     price = getRate(quoteCurrency,baseCurrency,quoteCurrencyAmount)
-    fee = getFeeCost(baseCurrency,price)
+    fee = getFeeCost(price)
     totalTransactionCost = fee + price
     availableBalance = getQuoteAmountBalance(baseCurrency)
     #We check if there are sufficient funds on the currency we will charge a fee on
-    if availableBalance >= totalTransactionCost:
+    if baseCurrency == quoteCurrency:
+        raise ValueError("Can't charge fee of transaction over the same currency" )
+    elif availableBalance >= totalTransactionCost:
         currentBalance[baseCurrency]  = currentBalance[baseCurrency] - totalTransactionCost
         currentBalance[quoteCurrency] = currentBalance[quoteCurrency] + quoteCurrencyAmount
 
@@ -99,7 +101,7 @@ def exchange(baseCurrency, quoteCurrency, quoteCurrencyAmount):
         json.dump(feesDict, feesRegistry)
         feesRegistry.close()
     else:
-        raise Exception("Available balance amount of " + baseCurrency + " is insufficient." )
+        raise ValueError("Available balance amount of " + baseCurrency + " is insufficient." )
 
     return {"exchangeRate":price, "feeCost":fee, "quoteAmountBalance":currentBalance[quoteCurrency]}
 

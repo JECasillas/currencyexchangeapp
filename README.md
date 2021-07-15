@@ -35,7 +35,7 @@ To get the exchange rate between a base currency and a quote currency, we specif
     }
 ```
 
-The reply contains information about the exchange rate requested, in this example, we get 0.576 GBP for 1 CAD:
+The reply contains information about the exchange rate requested, in this example, we get 0.576 GBP for 1 CAD. We have set, for this project, a 3% fee on all transactions:
 ```
     {
         "exchangeRate": 0.576,
