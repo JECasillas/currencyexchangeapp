@@ -18,9 +18,8 @@ class TestCurrencyExchange(unittest.TestCase):
         #1000/1.03 is the amount minus the 3% charged for any given currency
         amountToExchange = getRate("USD","CAD",1000/1.0300001)
         #print(amountToExchange)
-        #print(getRate("CAD","USD",1213.5922330097087))
 
-        #buying the exact amount of CAD for 970 USD should give us a USD balance of 0
+        #buying the exact amount of CAD for 1000/1.03 USD should give us a USD balance of 0
         exchange("USD","CAD",amountToExchange)
         self.assertAlmostEqual(currentBalance["USD"], 0, places=3)
 
@@ -28,7 +27,7 @@ class TestCurrencyExchange(unittest.TestCase):
         with self.assertRaises(ValueError):
             exchange("NZD", "EUR", 100)
             exchange("EUR", "GBP", 2000)
-            #We regression test by exhausting a currency's balance.
+            #We regression test by exhausting a currency's balance. Since we spent all our USD, we should'nt be able to buy anything else with it.
             exchange("USD","CAD",1)
 
     #def test_calculateTotalFees():
