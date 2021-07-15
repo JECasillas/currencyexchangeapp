@@ -15,11 +15,11 @@ class TestCurrencyExchange(unittest.TestCase):
     #we test our exceptions.
     def test_exchange(self):
         #assuming getRate test works, we pay the exact amount plus the fee cost to spend the whole of a base currency
-        #1000/1.03 is the amount minus the 3% charged for any given currency
+        #1000/1.03 is the amount minus the 3% charged for any given currency. In this case we use CAD.
         amountToExchange = getRate("USD","CAD",1000/1.0300001)
         #print(amountToExchange)
 
-        #buying the exact amount of CAD for 1000/1.03 USD should give us a USD balance of 0
+        #therefore, buying the exact amount of CAD for 1000/1.03 USD should give us a USD balance of 0
         exchange("USD","CAD",amountToExchange)
         self.assertAlmostEqual(currentBalance["USD"], 0, places=3)
 
