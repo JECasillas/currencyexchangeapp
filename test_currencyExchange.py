@@ -31,8 +31,8 @@ class TestCurrencyExchange(unittest.TestCase):
             exchange("USD","CAD",1)
 
     #def test_calculateTotalFees(self):
-        #since we made a transaction in our past tests and assuming it's the only one registered in the database, we know the aproximate
-        #amount that should've been charged. About 3% of 1000.
+        ##since we made a transaction in our past tests and assuming it's the only one registered in the database, we know the aproximate
+        ##amount that should've been charged. About 3% of 1000.
         #totalFees = calculateTotalFees()
         #print(str(totalFees))
         #self.assertAlmostEqual(totalFees,30, places=1)
